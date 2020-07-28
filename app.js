@@ -17,7 +17,8 @@ var commentRoutes = require("./routes/comments"),
 	indexRoutes = require("./routes/index");
 
 //"mongodb://localhost:27017/yelp_camp"
-mongoose.connect("mongodb+srv://admin:Qwer1234@cluster0.1ld5b.mongodb.net/yelp_camp?retryWrites=true&w=majority", {
+//"mongodb+srv://admin:Qwer1234@cluster0.1ld5b.mongodb.net/yelp_camp?retryWrites=true&w=majority"
+mongoose.connect(process.env.DATABASEURL, {
 				 useNewUrlParser: true,
 				 useUnifiedTopology: true
 				 }).then(() => console.log('Connected to DB!')).catch(error => console.log(error.message));
