@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 const Comment = require("./comment");
 
 // SCHEMA SETUP
-var campgroundSchema = new mongoose.Schema({
+var movieSchema = new mongoose.Schema({
 	name: String,
 	image: String,
 	description: String,
@@ -22,7 +22,7 @@ var campgroundSchema = new mongoose.Schema({
 });
 
 // a pre hook of comments to their corresponding camground when deleted
-campgroundSchema.pre("remove", async function(next){
+movieSchema.pre("remove", async function(next){
 	try{
 		await Comment.remove({
 			_id: {
@@ -36,4 +36,4 @@ campgroundSchema.pre("remove", async function(next){
 	
 });
 
-module.exports = mongoose.model("Campground", campgroundSchema);
+module.exports = mongoose.model("Movie", movieSchema);

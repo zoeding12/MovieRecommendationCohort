@@ -5,30 +5,30 @@
 	<header class = "jumbotron">
 		<div class = "container">
 			<h1>
-				Welcome to YelpCamp!
+				Welcome to Movie Cohort
 			</h1>
 
 			<p>
-				View our hand-picked campgrounds from all over the world
+				View movies recommended by your friends
 			</p>
 			<p>
-				<a class = "btn btn-primary btn-lg" href="/campgrounds/new">Add New Campground</a>
+				<a class = "btn btn-primary btn-lg" href="/movies/new">Add New Movie</a>
 			</p>
 		</div>
 	</header>
 
 	<div class="row text-center">
-			<% campgrounds.forEach(function(campground){ %>
+			<% movies.forEach(function(movie){ %>
 				<div class = "col-md-3 col-sm-6">
 					<div class = "thumbnail">
-						<img src = "<%= campground.image %>">
+						<img src = "<%= movie.image %>">
 						<div class = "caption">
 							<h4>
-								<%= campground.name %>
+								<%= movie.name %>
 							</h4>
 						</div>
 						<p>
-							<a href="/campgrounds/<%= campground._id%>" class="btn btn-primary">More Info</a>
+							<a href="/movies/<%= movie._id%>" class="btn btn-primary">More Info</a>
 						</p>
 					</div>
 				</div>

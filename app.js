@@ -5,7 +5,7 @@ var express = require("express"),
 	flash = require("connect-flash"),
 	passport = require("passport"),
 	LocalStrategy = require("passport-local"),
-	Campground = require("./models/campground"),
+	Movie = require("./models/movie"),
 	Comment = require("./models/comment"),
 	User = require("./models/user"),
 	seedDB = require("./seeds"),
@@ -13,11 +13,12 @@ var express = require("express"),
 	port = process.env.PORT || 3000;
 
 var commentRoutes = require("./routes/comments"),
-	campgroundRoutes = require("./routes/campgrounds"),
+	movieRoutes = require("./routes/movies"),
 	indexRoutes = require("./routes/index");
 
 //"mongodb://localhost:27017/yelp_camp"
 //"mongodb+srv://admin:Qwer1234@cluster0.1ld5b.mongodb.net/yelp_camp?retryWrites=true&w=majority"
+console.log(process.env.DATABASEURL);
 mongoose.connect(process.env.DATABASEURL, {
 				 useNewUrlParser: true,
 				 useUnifiedTopology: true
@@ -32,7 +33,7 @@ app.use(flash());
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
-	secret: "Why always Rusty",
+	secret: "This is my secret line",
 	resave: false,
 	saveUninitialized: false
 }));
@@ -51,8 +52,8 @@ app.use(function(req, res, next){
 
 // require routes
 app.use(indexRoutes);
-app.use("/campgrounds", campgroundRoutes);
-app.use("/campgrounds/:id/comments", commentRoutes);
+app.use("/movies", movieRoutes);
+app.use("/movies/:id/comments", commentRoutes);
 
 
 

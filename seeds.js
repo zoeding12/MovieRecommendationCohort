@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var Campground = require("./models/campground");
+var Movie = require("./models/movie");
 var Comment   = require("./models/comment");
  
 var data = [
@@ -22,7 +22,7 @@ var data = [
  
 function seedDB(){
    //Remove all campgrounds
-   Campground.remove({}, function(err){
+   Movie.remove({}, function(err){
         if(err){
             console.log(err);
         }
@@ -34,25 +34,25 @@ function seedDB(){
             console.log("removed comments!");
              //add a few campgrounds
             data.forEach(function(seed){
-                Campground.create(seed, function(err, campground){
+                Movie.create(seed, function(err, movie){
                     if(err){
                         console.log(err)
                     } else {
-                        console.log("added a campground");
+                        console.log("added a movie");
                         //create a comment
-                        Comment.create(
-                            {
-                                text: "This place is great, but I wish there was internet",
-                                author: "Homer"
-                            }, function(err, comment){
-                                if(err){
-                                    console.log(err);
-                                } else {
-                                    campground.comments.push(comment);
-                                    campground.save();
-                                    console.log("Created new comment");
-                                }
-                            });
+                        // Comment.create(
+                        //     {
+                        //         text: "This place is great, but I wish there was internet",
+                        //         author: "Homer"
+                        //     }, function(err, comment){
+                        //         if(err){
+                        //             console.log(err);
+                        //         } else {
+                        //             campground.comments.push(comment);
+                        //             campground.save();
+                        //             console.log("Created new comment");
+                        //         }
+                        //     });
                     }
                 });
             });

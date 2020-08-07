@@ -1,22 +1,22 @@
-var Campground = require("../models/campground");
+var Movie = require("../models/movie");
 var Comment = require("../models/comment");
 
 // all the middleware goes here
 var middlewareObj = {};
 
-middlewareObj.checkCampgroundOwnership = function(req, res, next){
+middlewareObj.checkMovieOwnership = function(req, res, next){
 	if(req.isAuthenticated()){
-		Campground.findById(req.params.id, function(err, foundCampground){
-		  if(err || !foundCampground){
+		Movie.findById(req.params.id, function(err, foundMovie){
+		  if(err || !foundMovie){
 			  console.log(err);
-			  req.flash('error', 'Sorry, that campground does not exist!');
-			  res.redirect('/campgrounds');
-		  } else if(foundCampground.author.id.equals(req.user._id) || req.user.isAdmin){
-			  req.campground = foundCampground;
+			  req.flash('error', 'Sorry, that movie does not exist!');
+			  res.redirect('/movies');
+		  } else if(foundMovie.author.id.equals(req.user._id) || req.user.isAdmin){
+			  req.movie = foundMovie;
 			  next();
 		  } else {
 			  req.flash('error', 'You don\'t have permission to do that!');
-			  res.redirect('/campgrounds/' + req.params.id);
+			  res.redirect('/movies/' + req.params.id);
 		  }
 		});
 	}else{
